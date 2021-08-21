@@ -73,13 +73,32 @@ app.post("/contact", async (req, res) => {
       email,
       message,
     });
-    res.status(200).json({
-      message: `Hi ${name}, your message has been received. you will get a response soon.`
+    res.status(200).send({
+      message: `Hi ${name}, your message has been received. you will get a response soon.`,
+      response
     })
   } catch (err) {
     console.log(err.message);
+    res.status(500).send({
+      message: error.message
+    })
   }
 });
+
+app.get('/messages', async (req, res) => {
+  try {
+    const message = await Contact.find()
+    res.status(200).send({
+      message: `successful!`,
+      response: message
+    })
+  } catch (error) {
+    console.log(err.message);
+    res.status(500).send({
+      message: error.message
+    })
+  }
+})
 
 
 
