@@ -65,12 +65,6 @@ app.get('/', function (req, res) {
   })
 })
 
-app.get('/contact', () => {
-  res.render('index', {
-    title: "IBUKUNOLUWA'S RESUME"
-  })
-})
-
 app.post("/contact", async (req, res) => {
   try {
     const { name, email, message } = req.body;
